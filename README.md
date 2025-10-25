@@ -42,7 +42,7 @@ npm run dev
 
 ## 👨‍💻 Autor
 
-[Seu Nome]
+[Victor Carmo Alecrim]
 
 ## 📄 Licença
 
