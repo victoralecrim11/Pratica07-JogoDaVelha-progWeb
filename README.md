@@ -44,6 +44,3 @@ npm run dev
 
 [Victor Carmo Alecrim]
 
-## 📄 Licença
-
-MIT
