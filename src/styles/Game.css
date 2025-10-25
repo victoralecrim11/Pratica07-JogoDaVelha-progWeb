@@ -1,0 +1,313 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.game {
+  text-align: center;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+h1 {
+  color: #667eea;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.player-x {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.player-o {
+  color: #3498db;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.draws {
+  color: #95a5a6;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.score-value {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.status {
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #2c3e50;
+  min-height: 30px;
+}
+
+.board {
+  display: inline-block;
+  background: #34495e;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.board-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.board-row:last-child {
+  margin-bottom: 0;
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 2.5em;
+  font-weight: 900; /* Extra negrito */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c3e50; /* Cor escura padrão */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cores para X e O */
+.square {
+  color: #2c3e50; /* Cor escura padrão para melhor visibilidade */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+}
+
+/* Adiciona um contorno para melhorar a visibilidade */
+.square:not(:empty) {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 900;
+}
+
+/* Estilo quando o quadrado está vazio */
+.square:empty {
+  background: #f8f9fa;
+}
+
+/* Estilo para X */
+.square:contains("X") {
+  color: #e74c3c; /* Vermelho para X */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para O */
+.square:contains("O") {
+  color: #3498db; /* Azul para O */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo específico para X */
+.square:has(text="X") {
+  color: #e74c3c; /* Vermelho para X */
+}
+
+/* Estilo específico para O */
+.square:has(text="O") {
+  color: #3498db; /* Azul para O */
+}
+
+/* Estilo específico para X */
+.square:nth-child(odd) {
+  color: #e74c3c; /* Vermelho para X */
+}
+
+/* Estilo específico para O */
+.square:nth-child(even) {
+  color: #3498db; /* Azul para O */
+}
+
+/* Estilo específico para X */
+.square:has(text="X") {
+  color: #e74c3c; /* Vermelho para X */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo específico para O */
+.square:has(text="O") {
+  color: #3498db; /* Azul para O */
+  color: #2c3e50; /* Cor padrão para texto */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra para melhorar visibilidade */
+}
+
+/* Estilo para X */
+.square:nth-of-type(1) {
+  color: #e74c3c; /* Vermelho para X */
+}
+
+/* Estilo para O */
+.square:nth-of-type(2) {
+  color: #3498db; /* Azul para O */
+}
+
+/* Estilo específico para X */
+.square:has(:not(:empty)):nth-child(odd),
+.square:contains("X") {
+  color: #e74c3c; /* Vermelho para X */
+}
+
+/* Estilo específico para O */
+.square:has(:not(:empty)):nth-child(even),
+.square:contains("O") {
+  color: #3498db; /* Azul para O */
+}
+
+.square:hover:not(:disabled) {
+  background: #ecf0f1;
+  transform: scale(1.05);
+}
+
+.square:active {
+  transform: scale(0.95);
+}
+
+.square.winning {
+  background: #2ecc71 !important;
+  color: white;
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.game-controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.reset-btn,
+.reset-score-btn {
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn {
+  background: #667eea;
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.reset-score-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.reset-score-btn:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+.game-info {
+  margin-top: 25px;
+  text-align: left;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.game-info h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.game-info ol {
+  list-style: none;
+  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.game-info li {
+  margin-bottom: 5px;
+}
+
+.history-btn {
+  width: 100%;
+  padding: 8px;
+  background: white;
+  border: 2px solid #667eea;
+  border-radius: 5px;
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.history-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .square {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+}
